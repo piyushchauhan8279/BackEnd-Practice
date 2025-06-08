@@ -1,3 +1,8 @@
 // syntax errors 
 
-console.log("hello world");
+
+function syntaxTesting(){
+  console.log("hello world");
+}
+
+module.exports=syntaxTesting

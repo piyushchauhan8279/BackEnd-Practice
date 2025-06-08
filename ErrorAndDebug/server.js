@@ -1,4 +1,5 @@
 const http=require('http')
+const syntaxTesting=require('./syntax')
 
 const RequestHandler=require('./handler')
 const server=http.createServer(RequestHandler)
