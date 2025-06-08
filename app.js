@@ -1,6 +1,4 @@
 // creating a nodejs server 
-
-
 const fs=require('fs');
 // const { log } = require('util');
 
