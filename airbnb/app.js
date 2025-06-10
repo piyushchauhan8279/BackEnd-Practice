@@ -4,7 +4,7 @@ const express=require('express')
 // customs modules
 const userRouter=require('./routes/user')
 const hostRouter=require('./routes/host')
-
+const path=require('path')
 
 // create express app
 const app=express()
@@ -21,9 +21,10 @@ app.use(express.urlencoded());
 app.use(userRouter)
 app.use("/host",hostRouter) // common path 
 
+const rootDir=require('./utils/path')
 
 app.use((req,res,next)=>{
-  res.sendFile(Path.join(__dirname,'views','404.html'))
+  res.sendFile(path.join(rootDir,'views','404.html'))
 })
 
 const PORT=3000
