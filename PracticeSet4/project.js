@@ -1,5 +1,6 @@
 const express=require("express")
 const app=express()
+const bodyParser=require("body-parser")
 
 PORT=3000
 
@@ -35,11 +36,14 @@ app.get("/",(req,res,next)=>{
 // /contact-us middleware
 
 app.get("/contact-us",(req,res,next)=>{
-  console.log("we are in contact-us midddleware");
+  console.log("we are in contact-us midddleware"+ req.body);
   res.send('<html><body><form action="contact-us" method="post"><label for="name">Name</label><input type="text" placeholder="Enter Your Name" id="name-input" name="name"><label for="mail">E-mail</label><input type="email" placeholder="Enter your Email" id="email-input" name="mail" ><button type="submit">Submit</button></form></body></html>')
 })
+app.use(bodyParser.urlencoded())
 
 app.post("/contact-us",(req,res,next)=>{
+  console.log(req.body);
+  
   res.send('<h1>we will contact you shortly</h1>')
 })
 
