@@ -37,11 +37,10 @@ app.get("/",(req,res,next)=>{
 app.get("/contact-us",(req,res,next)=>{
   console.log("we are in contact-us midddleware");
   res.send('<html><body><form action="contact-us" method="post"><label for="name">Name</label><input type="text" placeholder="Enter Your Name" id="name-input" name="name"><label for="mail">E-mail</label><input type="email" placeholder="Enter your Email" id="email-input" name="mail" ><button type="submit">Submit</button></form></body></html>')
-  next()
 })
 
-app.get("/contact-us",(req,res,next)=>{
-  console.log("form is submit sucessfully");
+app.post("/contact-us",(req,res,next)=>{
+  res.send('<h1>we will contact you shortly</h1>')
 })
 
 
