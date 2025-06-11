@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/piyushchauhan8279/BackEnd-Practice#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "@tailwindcss/cli": "^4.1.8",
+    "express": "^5.1.0",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
