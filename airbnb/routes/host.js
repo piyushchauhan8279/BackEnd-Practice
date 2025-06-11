@@ -18,4 +18,6 @@ hostRouter.post("/add-home",(req,res,next)=>{
   res.sendFile(path.join(rootDir,'views','home-added.html'))
 })
 
+hostRouter.use(express.static(path.join(rootDir,'public')))
+
 module.exports=hostRouter
