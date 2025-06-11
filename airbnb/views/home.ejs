@@ -13,7 +13,20 @@
     </header>
 
     <main class="text-center">
-      <a href="/host/add-home" class="font-bold text-blue-500 m-16 ">Add Homes</a>
+      <section>
+        <a href="/host/add-home" class="font-bold text-blue-500 m-16 ">Add Homes</a>
+      </section>
+
+      <section>
+        <h2>Here are our Registered houses</h2>
+        <ul><% houses.forEach(houses =>{%>
+          <li>
+            <%=houses.house%>
+          </li>
+        <%}) %>
+        </ul>
+      </section>
+
     </main>
   </body>
 </html>

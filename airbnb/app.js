@@ -1,16 +1,19 @@
 
-
-
 // external module
 const express=require('express')
 
 // customs modules
 const userRouter=require('./routes/user')
-const hostRouter=require('./routes/host')
+const {hostRouter}=require('./routes/host')
 const path=require('path')
 
 // create express app
 const app=express()
+
+// set for engine template 
+
+app.set('view engine','ejs')
+app.set('views','views')
 
 
 // adding middlewares
