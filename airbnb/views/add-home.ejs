@@ -3,8 +3,12 @@
 <body class="bg-purple-600 h-full">
   <%- include('partials/nav')%>
   <main class="flex justify-center align-middle">
-    <form action="/host/add-home" method="post">
+    <form action="/host/add-home" method="post" class="flex flex-col">
       <input type="text" placeholder="Enter your house name" id="house" name="house" class="bg-amber-50 p-3">
+      <input type="text" placeholder="Enter price per night" id="price" name="price" class="bg-amber-50 p-3">
+      <input type="number" placeholder="Enter rating" id="rating" name="rating" class="bg-amber-50 p-3">
+      <input type="url" placeholder="Enter your url" id="ur;" name="url" class="bg-amber-50 p-3">
+      
       <input type="submit" class="bg-green-400 p-4 block cursor-pointer mt-10 ml-14">
     </form>
   </main>

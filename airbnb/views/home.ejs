@@ -1,23 +1,35 @@
 <%- include('partials/head')%>
-  </head>
-  <body>
-   
-<%- include('partials/nav')%>
-    <main class="text-center">
-      <section>
-        <a href="/host/add-home" class="font-bold text-blue-500 m-16 ">Add Homes</a>
-      </section>
+</head>
+<body class="bg-gray-100 font-sans leading-relaxed text-gray-800">
+  <%- include('partials/nav')%>
 
-      <section>
-        <h2>Here are our Registered houses</h2>
-        <ul><% houses.forEach(houses =>{%>
-          <li>
-            <%=houses.house%>
-          </li>
-        <%}) %>
-        </ul>
-      </section>
+  <main class="container mx-auto px-4 py-8 text-center">
+    
+    <section class="mb-8">
+      <a href="/host/add-home" class="inline-block px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md transition duration-300 font-semibold">
+        + Add Home
+      </a>
+    </section>
 
-    </main>
-  </body>
+    <section class="bg-white rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Registered Houses</h2>
+      <ul class="space-y-4">
+  <% houses.forEach(house => { %>
+    <li class="bg-blue-50 border border-blue-200 p-4 rounded-md shadow-sm hover:shadow-md transition text-left">
+      <h3 class="text-lg font-semibold text-blue-800 mb-2"><%= house.house %></h3>
+      <p><strong>Price per night:</strong> ₹<%= house.price %></p>
+      <p><strong>Rating:</strong> <%= house.rating %>⭐</p>
+      <!-- <p><strong>Image URL:</strong> <a href="<%= house.url %>" class="text-blue-600 underline" target="_blank"><%= house.url %></a></p> -->
+      
+      <!-- Optional image preview -->
+      <% if (house.url) { %>
+        <img src="<%= house.url %>" alt="<%= house.house %>" class="mt-4 rounded-lg w-full max-h-64 object-cover shadow" />
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
+
+    </section>
+  </main>
+</body>
 </html>
