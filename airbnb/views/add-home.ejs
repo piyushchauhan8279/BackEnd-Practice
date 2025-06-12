@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Home</title>
-  <link href="output.css" rel="stylesheet">
+<%- include('partials/head')%>
 </head>
 <body class="bg-purple-600 h-full">
+  <%- include('partials/nav')%>
   <main class="flex justify-center align-middle">
     <form action="/host/add-home" method="post">
       <input type="text" placeholder="Enter your house name" id="house" name="house" class="bg-amber-50 p-3">

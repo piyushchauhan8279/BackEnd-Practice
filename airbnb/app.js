@@ -38,7 +38,7 @@ app.use(express.static(path.join(rootDir,'public')))
 
 
 app.use((req,res,next)=>{
-  res.sendFile(path.join(rootDir,'views','404.html'))
+  res.render('404',{'pageTitle':'Not found'})
 })
 
 const PORT=3000

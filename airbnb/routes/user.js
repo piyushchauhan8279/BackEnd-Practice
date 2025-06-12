@@ -6,7 +6,8 @@ const {houses}=require('./host')
 
 const rootDir=require('../utils/path')
 userRouter.get("/",(req,res,next)=>{
-  res.render('home',{houses})
+res.render('home', { houses, pageTitle: 'Home Page' });
+
 })
 
 userRouter.use(express.static(path.join(rootDir,'public')))

@@ -1,3 +1,4 @@
+// external module 
 const express =require('express')
 // core module
 const path=require('path')
@@ -10,7 +11,7 @@ const rootDir=require('../utils/path')
 
 
 hostRouter.get("/add-home",(req,res,next)=>{
-  res.sendFile(path.join(rootDir,'views','add-home.html'))
+  res.render('add-home',{pageTitle:'Add Home'})
 })
 
 const houses=[]
@@ -18,7 +19,7 @@ hostRouter.post("/add-home",(req,res,next)=>{
   console.log(req.body);
   houses.push({house:req.body.house})
   console.log(houses);
-  res.sendFile(path.join(rootDir,'views','home-added.html'))
+  res.render('home-added',{pageTitle:'Added'})
 })
 
 hostRouter.use(express.static(path.join(rootDir,'public')))
