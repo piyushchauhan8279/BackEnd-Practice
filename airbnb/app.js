@@ -37,9 +37,9 @@ const rootDir=require('./utils/path')
 app.use(express.static(path.join(rootDir,'public')))
 
 
-app.use((req,res,next)=>{
-  res.render('404',{'pageTitle':'Not found'})
-})
+const errorController=require('./controllers/error')
+
+app.use(errorController.error)
 
 const PORT=3000
 app.listen(PORT,()=>{
