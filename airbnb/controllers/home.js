@@ -1,14 +1,24 @@
-// user controller 
-
-const {houses}=require('../routes/host')
-
-exports.user=(req,res,next)=>{
-res.render('home', { houses, pageTitle: 'Home Page' });
-}
-
+const Home=require('../models/houses')
 
 // host controller 
-
-exports.hostAddHome=(req,res,next)=>{
-  res.render('add-home',{pageTitle:'Add Home'})
+exports.homeAdd = (req, res, next) => {
+  res.render('add-home', { pageTitle: 'Add Home' })
 }
+
+// add home controller
+exports.addHome = (req, res, next) => {
+  // console.log(req.body);
+  const { house, price, rating, url } = req.body;
+  const home=new Home(house, price, rating, url );
+  home.save();
+  res.render('home-added', { pageTitle: 'Added' })
+}
+
+
+// user controller 
+exports.user = (req, res, next) => {
+  const houses=Home.fetchAll();
+  res.render('home', { houses, pageTitle: 'Home Page' });
+}
+
+// exports.houses = houses
