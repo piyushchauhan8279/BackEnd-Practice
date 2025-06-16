@@ -1,11 +1,9 @@
-
-// external module
 const express=require('express')
+const path=require('path')
 
 // customs modules
 const userRouter=require('./routes/user')
 const {hostRouter}=require('./routes/host')
-const path=require('path')
 
 // create express app
 const app=express()
@@ -24,7 +22,7 @@ app.use((req,res,next)=>{
   next();
 })
 
-app.use(express.urlencoded());
+app.use(express.urlencoded()); // without bodyparser
 app.use(userRouter)
 app.use("/host",hostRouter) // common path 
 
@@ -35,7 +33,6 @@ const rootDir=require('./utils/path')
 // add middleware
 
 app.use(express.static(path.join(rootDir,'public')))
-
 
 const errorController=require('./controllers/error')
 

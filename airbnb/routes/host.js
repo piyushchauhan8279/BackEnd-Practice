@@ -10,14 +10,19 @@ const hostRouter=express.Router()
 const rootDir=require('../utils/path')
 
 
-hostRouter.get("/add-home",(req,res,next)=>{
-  res.render('add-home',{pageTitle:'Add Home'})
-})
+const hostController=require('../controllers/home')
+
+console.log(hostController.hostAddHome);
+
+// hostRouter.get("/add-home",hostController.hostAddHome)
+
+
 
 const houses=[]
 hostRouter.post("/add-home",(req,res,next)=>{
-  console.log(req.body);
-  houses.push({house:req.body.house})
+  // console.log(req.body);
+  const {house,price,rating,url}=req.body;
+  houses.push({house,price,rating,url})
   console.log(houses);
   res.render('home-added',{pageTitle:'Added'})
 })
