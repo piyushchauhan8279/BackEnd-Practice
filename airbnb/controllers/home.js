@@ -17,8 +17,9 @@ exports.addHome = (req, res, next) => {
 
 // user controller 
 exports.user = (req, res, next) => {
-  const houses=Home.fetchAll();
-  res.render('home', { houses, pageTitle: 'Home Page' });
+  Home.fetchAll(houses=>{
+    res.render('home', { houses, pageTitle: 'Home Page' });
+  });
 }
 
 // exports.houses = houses
