@@ -10,14 +10,16 @@ const hostRouter = require("./routes/hostRouter")
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
 
-const db=require('./utils/dbUtil');
-const { error } = require('console');
+// for testing
+// const db=require('./utils/dbUtil');
+// const { error } = require('console');
 
-db.execute('SELECT * FROM homes').then(([rows,field])=>{
-  console.log(rows); // restructured the result 
-}).catch(error=>{
-  console.log(error);
-})
+// db.execute('SELECT * FROM homes').then(([rows,field])=>{
+//   console.log(rows); // restructured the result 
+//   console.log(field);
+// }).catch(error=>{
+//   console.log(error);
+// })
 
 const app = express();
 
