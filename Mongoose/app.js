@@ -1,6 +1,6 @@
 // Core Module
 const path = require('path');
-
+const mongoose=require('mongoose')
 // External Module
 const express = require('express');
 
@@ -9,7 +9,7 @@ const storeRouter = require("./routes/storeRouter")
 const hostRouter = require("./routes/hostRouter")
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
-const {mongoConnect}=require('./utils/dbUtil')
+// const {mongoConnect}=require('./utils/dbUtil')
 
 // for testing
 // const db=require('./utils/dbUtil');
@@ -38,10 +38,20 @@ app.use(express.static(path.join(rootDir, 'public')))
 app.use(errorsController.pageNotFound);
 
 
+
 const PORT = 3000;
-mongoConnect(()=>{  
+const DB_path="mongodb+srv://Piyush:root@kaku.kyznke9.mongodb.net/airbnb?retryWrites=true&w=majority&appName=kaku"
+
+
+mongoose.connect(DB_path).then(()=>{
+  console.log("connected successfully");
   app.listen(PORT, () => {
     console.log(`Server running on address http://localhost:${PORT}`);
   });
+}).catch(error=>{
+  console.log("error while connecting with mongoose"+error);
+  
 })
+
+
 
