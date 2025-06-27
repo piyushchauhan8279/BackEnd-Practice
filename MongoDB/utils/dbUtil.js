@@ -12,7 +12,7 @@ const mongoURL="mongodb+srv://Piyush:root@kaku.kyznke9.mongodb.net/?retryWrites=
 let _db;
 
 
-const mongoConnect = (callback) => {
+const mongoConnect = (callback ) => {
   MongoClient.connect(mongoURL).then((client) => {
     _db = client.db('aibnb'); // connect to 'aibnb' database
     callback();               // call the callback after successful connection
