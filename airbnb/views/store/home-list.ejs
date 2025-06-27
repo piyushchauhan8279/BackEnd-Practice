@@ -1,7 +1,7 @@
-<%- include('partials/head')%>
+<%- include('../partials/head')%>
 </head>
 <body class="bg-gray-100 font-sans leading-relaxed text-gray-800">
-  <%- include('partials/nav')%>
+  <%- include('../partials/nav')%>
 
   <main class="container mx-auto px-4 py-8 text-center">
     
@@ -25,6 +25,7 @@
       <% if (house.url) { %>
         <img src="<%= house.url %>" alt="<%= house.house %>" class="mt-4 rounded-lg w-full max-h-64 object-cover shadow" />
       <% } %>
+      <button class="bg-green-500- p-4 cursor-pointer">Book</button>
     </li>
   <% }) %>
 </ul>
