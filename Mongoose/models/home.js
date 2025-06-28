@@ -1,57 +1,35 @@
+const mongoose = require('mongoose');
+const favourite = require('./favourite');
 
-const {ObjectId}=require('mongodb')
+const homeSchema = mongoose.Schema({
+  houseName: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  rating: {
+    type: Number,
+    required: true
+  },
+  photoUrl: String,
+  description: String,
+});
 
-module.exports = class Home {
-  constructor(_id, houseName, price, location, rating, description,photoUrl) {
-    if(_id){
-      this._id = _id;
-    }
-    this.houseName = houseName;
-    this.price = price;
-    this.location = location;
-    this.rating = rating;
-    this.description = description;
-    this.photoUrl = photoUrl;
-  }
 
-  save() {
-    const db=getDB();
-    const update={
-      houseName: this.houseName,
-      price: this.price,
-      location: this.location,
-      rating: this.rating,
-      description: this.description,
-      photoUrl: this.photoUrl,
-    }
+// pre hook :- jab koi house delete karenge : toh woh favourite se bhi delete ho jaana chahiye 
 
-    if(this._id){ // update ka case hai 
-      return db.collection('homes')
-      .updateOne(
-        {_id:new ObjectId(String(this._id))},
-        {$set:update}
-      );
-    }
-    else{
-      // insert ka case hai
+homeSchema.pre('findOneAndDelete', async function(next) {
+  console.log('Came to pre hook while deleting a home');
+  const homeId = this.getQuery()._id;
+  await favourite.deleteMany({houseId: homeId});
+  next();
+});
 
-      return db.collection('homes').insertOne(this);
-    }
-    
-  }
-
-  static fetchAll() {
-    const db=getDB();
-    return db.collection('homes').find().toArray();
-  }
-
-  static findById(homeId) {   
-    const db=getDB();
-    return db.collection('homes').find({_id:new ObjectId(String(homeId))}).next();
-  }
-
-  static deleteById(homeId) {
-    const db=getDB();
-    return db.collection('homes').deleteOne({_id:new ObjectId(String(homeId))});
-  }
-};
+module.exports = mongoose.model('Home', homeSchema);

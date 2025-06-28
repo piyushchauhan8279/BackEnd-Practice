@@ -22,7 +22,6 @@
                   <span class="text-gray-700"><%= home.rating %></span>
                 </div>
               </div>
-              <div class="text-gray-500 p-8" ><%=home.description%></div>
               <a class="bg-blue-300 p-2" href="/homes/<%= home._id %>">Details</a>
               <%- include('../partials/favourite', {home: home}) %>
             </div>
