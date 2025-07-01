@@ -1,5 +1,7 @@
 // Core Module
 const path = require('path');
+const cookieParser = require('cookie-parser');
+
 
 // External Module
 const express = require('express');
@@ -17,9 +19,22 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+app.use(cookieParser());
+app.use((req, res, next) => {
+  req.isLoggedin = req.cookies.isLoggedin === "true";
+  next();
+});
 
 app.use(express.urlencoded());
 app.use(storeRouter);
+app.use("/host", (req,res,next)=>{
+  if(req.isLoggedin){
+    next();
+  }
+  else{
+    return res.redirect("/login")
+  }
+});
 app.use("/host", hostRouter);
 app.use(authRouter)
 
