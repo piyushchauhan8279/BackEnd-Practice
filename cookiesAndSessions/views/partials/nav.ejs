@@ -45,6 +45,8 @@
         >
       </li>
       <%}%>
+
+      <% if(!isLoggedin){%>
       <li>
         <a
           href="/login"
@@ -52,6 +54,11 @@
           >Login</a
         >
       </li>
+      <%} else{%>
+        <form action="/logout" method="post">
+          <button type="submit" class="hover:bg-red-400  px-4 rounded">logout</button>
+        </form>
+        <%}%>
     </ul>
   </nav>
 </header>

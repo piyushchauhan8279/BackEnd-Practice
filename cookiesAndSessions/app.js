@@ -1,8 +1,10 @@
 // Core Module
 const path = require('path');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
+const session=require('express-session')
+const mongodbStore=require('connect-mongodb-session')(session)
 
-
+const DB_PATH = "mongodb+srv://Piyush:root@kaku.kyznke9.mongodb.net/?retryWrites=true&w=majority&appName=kaku";
 // External Module
 const express = require('express');
 
@@ -19,9 +21,21 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-app.use(cookieParser());
+
+const store=new mongodbStore({
+uri:"mongodb+srv://Piyush:root@kaku.kyznke9.mongodb.net/",
+collection:'session'
+})
+
+app.use(session({
+  secret:"kaku",
+  resave:false,
+  saveUninitialized:true,
+  store:store,
+}))
+
 app.use((req, res, next) => {
-  req.isLoggedin = req.cookies.isLoggedin === "true";
+  req.isLoggedin = req.session.isLoggedin;
   next();
 });
 
@@ -43,7 +57,6 @@ app.use(express.static(path.join(rootDir, 'public')))
 app.use(errorsController.pageNotFound);
 
 const PORT = 3000;
-const DB_PATH = "mongodb+srv://Piyush:root@kaku.kyznke9.mongodb.net/?retryWrites=true&w=majority&appName=kaku";
 
 mongoose.connect(DB_PATH).then(() => {
   console.log('Connected to Mongo');
